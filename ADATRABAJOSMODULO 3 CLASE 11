@@ -1,0 +1,80 @@
+// EJERCICIO 1  Simulación de Tiempo de Respuesta de un Servidor
+
+function simulacionServidor(){
+    let randomTimeSeconds = (Math.floor(Math.random() * 3) + 1) * 1000;
+    console.log("Tiempo random", randomTimeSeconds);
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Servidor listo")
+        }, randomTimeSeconds );
+    })
+}
+
+async function ejecutarSimulacion(){
+    const resultado = await simulacionServidor();
+    console.log(resultado);
+}
+ejecutarSimulacion();
+EJERCICIO 2 
+. Lectura de Datos con Retraso Simulado y Manejo de Errores
+
+
+function obtenerDatos(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const exito = Math.random() > 0.5;
+            if(exito){
+                resolve("Datos obtenidos con exito");
+            } else {
+                reject("Error al leer los datos");
+            }
+        })
+    })
+}
+
+async function consultarDatos(){
+    try{
+        const resultado = await obtenerDatos();
+        console.log(resultado);
+    } catch(error){
+        console.error('Ocurrio un error: ', error);
+    } finally{
+        console.log("Finalizando consulta de datos");
+    }
+}
+
+consultarDatos();
+
+EJERCICIO 3 
+// 3. Ejecución de Múltiples Consultas en Paralelo
+
+function consulta1(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve("Consulta 1 completada"), 1000)
+    })
+}
+function consulta2(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve("Consulta 2 completada"), 2000)
+    })
+}
+function consulta3(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve("Consulta 3 completada"), 3000)
+    })
+}
+
+async function ejecutarConsultas(){
+    try{
+        const promesa1 = consulta1();
+        const promesa2 = consulta2();
+        const promesa3 = consulta3();
+
+        const resultados = await Promise.all([promesa1, promesa2, promesa3]);
+        console.log("Resultados: ", resultados);
+    } catch(error){
+        console.error("Error en consulta", error)
+    }
+}
+ejecutarConsultas();
+

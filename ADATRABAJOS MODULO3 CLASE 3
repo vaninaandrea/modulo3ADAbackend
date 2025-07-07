@@ -1,0 +1,45 @@
+EJERCICIO 1    1.main.ts    //Exportacion, modularizacion basica
+import {add, subtract} from './1.mathUtils';
+
+let result: number;
+
+result = add(5,10);
+console.log(`El resultado de la suma es: ${result}`);
+
+result = subtract(10,5);
+console.log(`El resultado de la resta es: ${result}`
+
+1. mathUtils.ts
+
+// Actividad 1:
+
+Modularización BASICA
+
+export function add(a: number, b:number) : number {
+    return a + b;
+}
+
+ejercicio 2 
+
+mai.ts
+
+//Modularizacion Nombradas
+import {capitalize, reverse} from './2.stringUtils'
+
+console.log(capitalize('nina'));
+console.log(reverse('nina'));
+
+ejercicio 3
+main.ts
+
+import createUser from "./user";
+
+let user = createUser("Nina", 46);
+console.log(user);
+
+ ususario.ts
+
+export default function createUser(name: string, age: number): Object{
+    return {name, age};
+}
+

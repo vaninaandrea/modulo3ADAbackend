@@ -1,0 +1,90 @@
+// Ejercicio 1:  Herencia Simple  
+
+// Consigna: Define una clase base Torta que tenga propiedades generales como
+// nombre y tipo, y un método hacerDescripcion() que devuelva una descripción
+// general de la torta.
+
+export class Torta{
+    nombre: string;
+    tipo: string;
+
+    constructor(nombre: string, tipo: string){
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+
+    hacerDescripcion(): void{
+        console.log(`La torta ${this.nombre} es de tipo ${this.tipo}`);
+    }
+}
+
+class TortaDeChocolate extends Torta{
+    constructor(nombre:string, tipo: string){
+        super(nombre, tipo);
+    }
+
+    hacerDescripcion(): void {
+        console.log("Soy una torta de chocolate, deliciosa y suave.");
+    }
+}
+
+const chocoBrownie = new TortaDeChocolate('Choco Brownie', 'Brownie');
+chocoBrownie.hacerDescripcion();
+
+EJERCICIO 2
+
+Herencia Simple con Acceso
+// Consigna: Crea una clase base Maestro con propiedades protegidas nombre y
+// materia, y un método enseñar(). Luego, crea una clase derivada
+// MaestroMatematicas que extienda de Maestro y sobrescriba el método
+// enseñar() para imprimir un mensaje específico de matemáticas.
+class Maestro{
+    protected nombre: string;
+    protected materia: string;
+
+    constructor(nombre:string, materia: string){
+        this.nombre = nombre;
+        this.materia = materia;
+    }
+
+    ensenar(): void {
+        console.log('Enseñar desde clase padre');  
+    }
+}
+
+class MaestroMatematicas extends Maestro{
+    constructor(nombre: string, materia: string){
+        super(nombre, materia);
+    }
+
+    ensenar(): void {
+        console.log(`${this.nombre} da clases de ${this.materia}`);
+    }
+}
+
+const nuevoMaestroMate = new MaestroMatematicas("Juan Martinez", "Matematicas");
+nuevoMaestroMate.ensenar();
+
+EJERCICIO 3 
+
+Herencia Múltiple Indirecta (vía Interfaces)
+// Consigna:
+Crea dos interfaces: Volador con el método volar() y Transportable
+
+// con el método transportar(). Luego crea una clase Avion que implemente ambas
+
+// interfaces y sobrescriba los métodos.
+
+interface Volador{
+    volar(): void;
+}
+interface Transportable{
+    transportar() : void;
+}
+
+class Avion implements Volador, Transportable{
+    protected modelo: string;
+
+    constructor(modelo: string){
+        this.modelo = modelo;
+    }

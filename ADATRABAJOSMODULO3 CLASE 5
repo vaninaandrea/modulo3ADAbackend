@@ -1,0 +1,57 @@
+EJERCICIO 1:
+
+Operaciones básicas con Arrays
+
+// 1. Declara un array de números con los valores [5, 10, 15, 20, 25].
+let arrayNumeros: number[] = [5,10, 15, 20, 25];
+// 2. Imprime el tercer elemento del array.
+console.log(arrayNumeros[2]);
+// 3. Añade el número 30 al final del array.
+arrayNumeros.push(30);
+// 4. Elimina el primer número del array.
+arrayNumeros.shift();
+// 5. Muestra por consola la longitud actual del array.
+console.log(`Longitud actual del array: ${arrayNumeros.length}`);
+
+EJERCICIO 2
+
+// Ejercicio 2: Creación de Objetos y Atributos
+// 1. Define un objeto que represente un libro con las siguientes propiedades:
+// título, autor, y año de publicación.
+let libro : { 
+    titulo: string, 
+    auto: string, 
+    anioPublicacion: number
+};
+// 2. Crea una instancia de ese objeto y muestra sus propiedades en la consola.
+let libro1: { 
+    titulo: string, 
+    autor: string, 
+    anioPublicacion: number
+} = {
+    titulo: "EnCambio",
+    autor: "Estanislao Bachrach",
+    anioPublicacion: 2022
+};
+
+// Mostrar las propiedades del objeto en la consola
+console.log(`Título: ${libro1.titulo} Autor: ${libro1.autor} Año de publicación:${libro1.anioPublicacion}`);
+
+EJERCICIO  3 
+
+ Métodos en Objetos
+
+export let libro1: { 
+    titulo: string, 
+    autor: string, 
+    anioPublicacion: number,
+    description: () => void
+} = {
+    titulo: "EnCambio",
+    autor: "Estanislao Bachrach",
+    anioPublicacion: 2022,
+    description(){
+        console.log(`Título: ${libro1.titulo} Autor: ${libro1.autor} Año de publicación: ${libro1.anioPublicacion}`);
+    }
+};
+libro1.description();

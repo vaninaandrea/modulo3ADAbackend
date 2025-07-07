@@ -1,0 +1,77 @@
+EJERCICCIO 1 
+const express = require('express');
+const app = express(); //Instancia de express
+const PORT = 3000;
+
+app.use(express.json());
+
+let usuarios = [
+    {name: "Nina", email: "ninacomputer@gmail.com"}, 
+    {name: "Pamela", email:"pamela@gmail.com"}
+]
+
+app.get('/', (req, res) => {
+    res.status(200).send("Hola! Bienvenida al ejercicio 1");
+})
+app.get('/usuarios', (req, res) => {
+    res.status(200).json(usuarios);
+})
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`)
+})
+
+EJERCICIO 2
+ Crear un Endpoint POST para agregar usuarios
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+//midleware para interpretar json
+app.use(express.json());
+let usuarios = [];
+
+app.post('/usuarios', (req, res) => {
+    const {name, email} = req.body;
+    if(!name || !email){
+        res.status(400).send(`No se pudo agregar usuario`);
+    } else {
+        res.status(201).send(`Usuario creado ${name}, ${email}`)
+        usuarios.push({name, email});
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+})
+
+EJERCICIO 3
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+let usuarios = [
+    {id: 1, name: "Nina", email: "ninacomputer@gmail.com"}, 
+    {id: 2, name: "Pamela", email:"pamela@gmail.com"},
+    {id: 3, name: "Alma", email:"alma@gmail.com"}
+]
+
+app.get('/', (req, res) => {
+    res.status(200).send("Bienvenida al ejercicio 3 Params dinamicos");
+})
+app.get('/usuarios/:id', (req, res) => {
+    const userId = parseInt(req.params.id);
+
+    const user = usuarios.find(u => u.id === parseInt(userId));
+    if(!user){
+        res.status(404).send("User not found")
+    } else {
+        res.json(user);
+    }
+})
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+})

@@ -1,0 +1,35 @@
+Ejercicio 1: 
+Declarar y usar funciones con tipos
+
+
+function multiplicarNumeros(num1: number, num2: number): number{
+    return num1 * num2;
+}
+
+console.log(multiplicarNumeros(5, 10));
+
+EJERCICIO 2
+
+Uso de funciones con parámetros opcionales
+
+function saludar(nombre: string, saludo: string = 'Hola'): string{
+    return `${saludo}, ${nombre}`;
+}
+
+console.log(saludar("Nina"));
+
+EJERCICIO 3 
+
+Creacion y manipulacion de objetos 
+let deportista : {nombre: string, deporte: string, energia: number, entrenar: Function}  = {
+    nombre: 'Nina',
+    deporte: 'fitnesssobrecarga',
+    energia : 99,
+    entrenar(deportista: any, horas: number): void{
+        deportista.energia -= (5 * horas)
+    }
+}
+console.log(deportista.energia);
+deportista.entrenar(deportista, 5);
+console.log(deportista.energia);
+

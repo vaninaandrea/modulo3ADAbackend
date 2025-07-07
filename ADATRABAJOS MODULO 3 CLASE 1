@@ -1,0 +1,28 @@
+EJERCICIO 1
+// Crea un programa en TypeScript donde se declaren variables para almacenar tu
+// nombre, edad y si eres estudiante, utilizando los tipos de datos correctos.
+// Luego, imprime esos valores en la consola.
+
+let nombre: string = Nina";
+let edad: number = 46;
+let eresEstudiante: boolean = true;
+console.log('Nombre: ', nombre);
+console.log('Edad: ', edad);
+console.log('Eres estudiante ', eresEstudiante);
+
+EJERCICIO 2
+
+let variableAny: any = 48;
+console.log(variableAny);
+variableAny = "Variable any en string";
+console.log(variableAny);
+
+EJERCICIO 3 
+// Ejercicio 3: Combina variables primarias
+// Declara variables para almacenar tu nombre y edad. Combina esas variables en
+// un solo mensaje usando plantillas de cadena (template literals) e imprímelo en
+// la consola.
+let nombre: string =" Vanina Andrea Alvarez Nina";
+let edad: number = 46;
+let message : string = `${nombre} tiene ${edad}`;
+console.log(message);

@@ -1,0 +1,83 @@
+EJERCICICO 1
+ Crear una API REST con un Endpoint de Prueba
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+app.get('/api/message', (req, res) => {
+    res.json({message: "Bienvenido!!!"})
+})
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}/api/message`);
+});
+
+EJERCICIO 2
+Implementar Operaciones CRUD en una API REST
+
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+let users = [];
+
+app.get('/api/users', (req, res) => {
+  res.status(200).json(users);
+});
+
+app.post('/api/users', (req, res) => {
+  const { name, email } = req.body;
+  if (!name || !email) {
+    return res.status(400).json({ error: 'Name y email son requeridos' });
+  }
+  const newUser = { id: users.length + 1, name, email };
+  users.push(newUser);
+  res.status(201).json(newUser);
+});
+
+Endpoint para actualizar un usuari
+o
+app.put('/api/users/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, email } = req.body;
+
+  const user = users.find(u => u.id === parseInt(id));
+  if (!user) {
+    return res.status(404).json({ error: 'Usuario no encontrado' });
+  }
+
+  user.name = name || user.name;
+  user.email = email || user.email;
+  res.status(200).json(user);
+});
+
+// Endpoint para eliminar un usuario
+app.delete('/api/users/:id', (req, res) => {
+  const { id } = req.params;
+  users = users.filter(u => u.id !== parseInt(id));
+  res.status(204).send(); // No se envía contenido
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+});
+
+EJERCICIO 3
+
+Crear un Middleware Personalizado
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+const requestRegister = (req, res, next) => {
+    console.log(`Solicitus recibida: ${req.method} ${req.url}`);
+    next();
+}
+
+app.use(requestRegister);

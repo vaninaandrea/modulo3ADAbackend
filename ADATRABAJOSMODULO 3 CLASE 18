@@ -1,0 +1,63 @@
+Ejercicio 1: Rutas GET y POST simples
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+//body-parser para leer JSON
+app.use(express.json());
+
+app.get('/hello', (req, res) => {
+    res.json({ message: 'Hola, mundo!' });
+});
+
+app.post('/hello', (req, res) => {
+    const { name } = req.body;
+    res.json({ message: `Hola, ${name}!` });
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
+
+EJERCICIO 2
+
+ 
+Ruta con parámetros dinámicos
+
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+// Ruta GET con parámetro dinámico
+app.get('/greet/:name', (req, res) => {
+    const { name } = req.params;
+    res.json({ message: `Hola, ${name}!` });
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
+
+EJERCICIO 3
+ Validación de datos
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+// Validación de datos
+app.post('/register', (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
+    }
+    res.json({ message: 'Usuario registrado con éxito!' });
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});

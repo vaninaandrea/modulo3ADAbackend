@@ -1,0 +1,42 @@
+ EJERCICIO 1 
+
+let estudiante = {
+    nombre: 'Nina',
+    edad:46,
+    ciudad: 'Bahia Blanca'
+}
+
+for(let clave in estudiante){
+    console.log(`Propiedad: ${clave}, valor: ${estudiante[clave as keyof typeof estudiante]}`);
+
+EJERCICIO 2
+
+Usar For...Of para recorrer los valores de un arreglo
+
+
+const numeros: number [] = [3,4,5,7,8];
+for (let valor of numeros){
+    console.log(`Valor: ${valor}`);
+}
+ EJERCICIO 3 
+Crear una función genérica
+
+function funcionGenericaRetorna<T>(valor : T): T{
+    return valor;
+}
+
+export let numero = funcionGenericaRetorna<number>(56);
+console.log(`Ejemplo de uso con tipo number: ${numero}`);
+
+export let string = funcionGenericaRetorna<String>("Hola! esto es un string");
+console.log(`Ejemplo de uso con tipo string: ${string}`);
+
+let booleanType = funcionGenericaRetorna<Boolean>(true);
+console.log(`Ejemplo de uso con tipo boolean: ${booleanType}`);
+
+let arrayType = funcionGenericaRetorna<number[]>([3,4,5]);
+console.log(`Ejemplo de uso de un arreglo de tipo number: ${arrayType}`);
+
+let objectType = funcionGenericaRetorna<{ nombre: string }>({nombre: 'Nina'});
+console.log(`Ejemplo de uso de un objeto: ${objectType}`);
+console.log(`Ejemplo de uso de un objeto: ${JSON.stringify(objectType)}`);

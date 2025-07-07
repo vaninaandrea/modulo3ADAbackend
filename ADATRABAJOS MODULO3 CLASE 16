@@ -1,0 +1,107 @@
+EJRCICIO 1
+// Ejercicio 1: GET y POST de usuarios:
+
+const express = require('express')
+
+const app = express();
+const PORT = 3000;
+const users = [
+    {id: 1, name: "Nina"},
+    {id: 2, name: "Alma"}
+]
+
+app.use(express.json());
+
+app.get('/api/', (req, res) => {
+    res.send('Bienvenidas al ejercicio1');
+})
+app.get('/api/users', (req, res) => {
+    res.status(200).json(users);
+})
+
+app.post('/api/users', (req, res) => {
+    const {name} = req.body;
+    if(!name){
+        res.status(400).send('No se pudo agregar usuario, hace falta el nombre')
+    }
+    res.status(201).send(`Usuario creado ${name}`);
+    const newid = users.length + 1;
+    users.push({id: newid, name}); 
+
+})
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+})
+
+ejercicio 2
+GET y POST de productos
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+const products = [
+    {id: 1, name: "Netbook"},
+    {id: 2, name: "Notebook"}
+]
+
+app.use(express.json());
+
+app.get('/api/products', (req, res) => {
+    res.status(200).json(products);
+})
+
+app.post('/api/products', (req, res) => {
+    const {name} = req.body;
+    if(!name){
+        res.status(400).send('No se pudo agregar producto, hace falta el nombre')
+    }
+    res.status(201).send(`Producto creado ${name}`);
+    const newid = products.length + 1;
+    products.push({id: newid, name}); 
+})
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}/api`);
+})
+ejercicio 3 
+ PATCH y DELETE para usuarios
+
+const express = require('express');
+
+const app = express();
+const PORT = 3000;
+const users = [
+    {id: 1, name: "Nina"},
+    {id: 2, name: "Alma"}
+];
+
+app.use(express.json());
+
+app.get('/api/users', (req, res) => {
+    res.status(200).json(users);
+});
+
+app.patch('/api/users/:id', (req, res) => {
+    const {id} = req.params;
+    const {name} = req.body;
+    const index = users.findIndex((user) => user.id === parseInt(id));
+    if(index === -1) return res.status(404).json('User not found');
+    users[index].name = name;
+
+    res.status(200).json(users[index]);
+})
+
+app.delete('/api/users/:id', (req, res) => {
+    const {id} = req.params;
+    const index = users.findIndex(user => user.id === parseInt(id));
+    if(index === -1) return res.status(404).json('User not found');
+    const userDeleted = users[index]
+    users.splice(index, 1);
+    res.status(203).json(userDeleted);
+})
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}/api/users`)
+});
+

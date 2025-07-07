@@ -1,0 +1,139 @@
+ Ejercicio 7
+Comparación Completa - Sistema de Transporte Público
+// Diseña un sistema que combine interfaces y clases abstractas para gestionar un
+// transporte público.
+// • Crea una clase abstracta Transporte con un método abstracto mover().
+// • Define dos interfaces:
+// o Electrico con el método cargarBateria().
+// o Combustible con el método llenarTanque().
+// • Implementa dos clases:
+// o AutobusElectrico: Extiende de Transporte e implementa Electrico.
+// o Taxi: Extiende de Transporte e implementa Combustible.
+
+//Interfaz Electrico
+interface Electrico{
+    cargarBateria():void
+}
+//Interfaz Combustible
+interface Combustible {
+    llenarTanque(): void
+}
+
+//Clase Abstracta Transporte
+abstract class Transporte {
+    constructor(protected pasajeros: number){
+
+    }
+
+    //metodo abstracto que deben implementar las subclases
+    abstract mover(): void; 
+
+    //metodo concreto para describir el transporte
+    describir():void{
+        console.log(`Este transporte lleva ${this.pasajeros} pasajeros`);
+    }
+}
+
+//Clase autobusElectrico
+class AutobusElectrico extends Transporte implements Electrico{
+    mover(): void {
+        console.log("El autobus electrico se  traslada por la ciudad");
+    }
+    cargarBateria(): void {
+        console.log("Cargando la bateria del autobus");
+    }
+
+}
+
+class Taxi extends Transporte implements Combustible{
+    mover(): void {
+        console.log("El taxi se traslada por la ruta");
+    }
+    llenarTanque(): void {
+        console.log("Llenando el tanque del taxi");
+        
+    }
+}
+
+//Pruebas:
+const autobus = new AutobusElectrico(30);
+autobus.describir();
+autobus.cargarBateria();
+autobus.mover();
+
+const taxi = new Taxi(3);
+autobus.describir();
+autobus.cargarBateria();
+autobus.mover();
+
+EJERCICIO 2.TS
+Ejercicio 8: Sistema de Gestión de Cursos
+// Crea un sistema que gestione cursos, profesores y estudiantes. Usa una clase
+// abstracta Persona, clases concretas Estudiante y Profesor, y una clase Curso que
+// contenga los estudiantes y el profesor
+abstract class Persona{
+    nombre: string;
+    edad: number;
+
+    constructor(nombre: string, edad: number){
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    abstract mostrarInformacion():void;
+}
+class Estudiante extends Persona{
+    private _matricula: string;
+    
+    constructor(nombre: string, edad: number, matricula: string){
+        super(nombre, edad);
+        this._matricula = matricula;
+    }
+    mostrarInformacion(): void {
+        console.log(`Nombre: ${this.nombre} con matricula ${this._matricula}`);
+    }
+
+}
+
+class Profesor extends Persona{
+    private materia: string;
+
+    constructor(nombre: string, edad: number, materia: string){
+        super(nombre, edad);
+        this.materia = materia;
+    }
+
+    mostrarInformacion(): void {
+        console.log(`Profesor ${this.nombre} de la materia ${this.materia}`)
+    }
+}
+
+class Curso{
+    nombreCurso: string;
+    private estudiantes: Estudiante[];
+    private maestro: Profesor;
+
+    constructor(nombreCurso: string, maestro: Profesor){
+        this.nombreCurso = nombreCurso;
+        this.estudiantes = [];
+        this.maestro = maestro;
+    }
+
+    agregarEstudianteAlCurso(estudiante: Estudiante){
+        this.estudiantes.push(estudiante);
+    }
+
+    mostrarInformacion(): void{
+        console.log(`Curso ${this.nombreCurso} con el maestro ${this.maestro.nombre} con una cantidad de ${this.estudiantes.length == 0? 'No hay estudiantes inscritos aun': `${this.estudiantes.length} estudiantes`}`);
+    }
+}
+
+const maestraJavascript = new Profesor('Berni', 27, 'Back');
+const estudiante1 = new Estudiante('Nina', 46, '#8757');
+const estudiante2 = new Estudiante('Maria', 36, '#8777');
+
+const cursoBackend = new Curso('Back con Typescript y JS', maestraJavascript)
+cursoBack.agregarEstudianteAlCurso(estudiante1);
+cursoBack.agregarEstudianteAlCurso(estudiante2);
+
+cursoBack.mostrarInformacion();
